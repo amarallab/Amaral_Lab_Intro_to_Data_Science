@@ -112,7 +112,7 @@ def get_characters(the_play, boundary_line = 25):
     return personae
 
 
-def get_character_lines( character, the_play ):
+def get_character_lines(character, the_play):
     """
     This function takes the name of a character and the lines from the play
     extracted from GP's Complete Works of William Shakespeare and returns
@@ -149,7 +149,7 @@ def get_character_lines( character, the_play ):
     return character_lines
 
 
-def extract_words_from_lines( character, character_lines ):
+def extract_words_from_lines(character, character_lines):
     """
     This function takes the name of a character and a list 
     with all the lines from a character in the play and returns 
@@ -220,7 +220,7 @@ def plot_survival_function_word_frequency(corpus_name, counter, ax):
     return
 
 
-def text_entropy( counter ):
+def text_entropy(counter):
     """
     This function takes a Counter object and returns the entropy of the 
     underlying text.
