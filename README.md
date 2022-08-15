@@ -26,10 +26,6 @@ package that should be similar to any other program (so don't be afraid!).
 * [![Windows installation](http://img.youtube.com/vi/w16iUU6IA5E/0.jpg)](https://www.youtube.com/watch?v=w16iUU6IA5E "Windows installation")
 
 
-You can also watch this one
-
-<video controls src="setting_up_default.mp4" width = 600/>
-
 **You must have Python installed before you can start work through the notebooks.** 
 
 **If you are taking NICO 101/401, you need to have Python installed by the first day of class!**
