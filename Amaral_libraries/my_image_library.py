@@ -153,8 +153,8 @@ def rescaling_from_OCR_results( x, y, x_values, y_values, results ):
 
 
 #############################################################################
-def threshold_for_data_extraction( plate, ax1, ax2, coordinates, 
-                                   zoom_factor = 4., threshold_for_white = 100 ):
+def threshold_for_data_extraction( plate, ax1, ax2, threshold_for_white, 
+                                   coordinates, zoom_factor = 4.,  ):
     """
     Transform and RGB image to gray scale, then applies thresholding
     to make B&W version which is returned. 
@@ -164,9 +164,9 @@ def threshold_for_data_extraction( plate, ax1, ax2, coordinates,
         plate -- array
         ax1 -- axis object
         ax2 -- axis object
+        threshold_for_white -- float
         coordinates -- tuple or list with x and y coordinates to zoom in
         zoom_factor -- float with default value of 4.
-        threshold_for_white -- float with default value of 100
         
     outputs:
         plate_for_data -- array
@@ -215,7 +215,7 @@ def infer_grid_lines( axis, z_min, z_max, w_max, line_threshold, plate ):
     if axis == 0:
         for i in range(z_min, z_max):
             j = 0
-            while plate[i,j] and j < w_max:
+            while plate[i,j] and j < w_max-1:
                 j += 1
 
             # Check if this is grid line
