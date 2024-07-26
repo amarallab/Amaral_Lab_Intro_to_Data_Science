@@ -57,17 +57,17 @@ Then, unzip the file in your `Desktop`, or even better, in your `Dropbox`, `Box`
 You can then rename the folder `Amaral_Lab_Intro_to_Data_Science`, `NICO-101`, or whatever you feel like.
 
      
-# Jupyter Notebook
+# Jupyter Lab
 
-We will be making extensive use of the [Jupyter Notebook](http://jupyter.org) environment. `Jupyter Notebook` is a 'web-based interactive computational environment', meaning that it allows to write and execute python code in a web page from your own computer. `Jupyter Notebook` is an excellent environment in which learn the basics of Python programming and computational data analysis.
+We will be making extensive use of the [Jupyter](https://jupyter.org/) environment. `Jupyter Lab` is a 'web-based interactive computational environment', meaning that it allows to write and execute python code in a web page from your own computer. `Jupyter Lab` is an excellent environment in which learn the basics of Python programming and computational data analysis.
 
-`Jupyter Notebook` is installed by default with the Anaconda Python distribution and can be launched from the `Anaconda Navigator` program. We have another video below that details how to launch and use a notebook.
+`Jupyter Lab` is installed by default with the Anaconda Python distribution and can be launched from the `Anaconda Navigator` program. We have another video below that details how to launch and use a notebook.
 
 **Find the `Anaconda Navigator` application in your computer and launch it.**
 
 <img src = "Media/navigator.png" width = 600>
 
-If you click on the `Notebook` application (second row, first on the left in image) you will launch the a `Notebook` in instance. in your browser of choice.
+If you click on the `Notebook` application (second row, first on the left in image) you will launch the a `Jupter Lab` instance. in your browser of choice.
 
 <img src = "Media/jupyter_default.png" width = 600>
 
@@ -94,4 +94,6 @@ many iterations of the course. We would like to thank (in alphabetical order):
 
 The new version, build on the work of all of these and on additional contributions by:
 
-* Luiz Alves
+* Luiz Gustavo de Andrade Alves
+* Helio Tejedor
+  

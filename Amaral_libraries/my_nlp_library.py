@@ -1,10 +1,10 @@
 __author__ = "Amaral LAN"
-__copyright__ = "Copyright 2022, Amaral LAN"
+__copyright__ = "Copyright 2022,2023, Amaral LAN"
 __credits__ = ["Amaral LAN"]
-__version__ = "0.2"
+__version__ = "0.3"
 __maintainer__ = "Amaral LAN"
 __email__ = "amaral@northwestern.edu"
-__status__ = "beta"
+__status__ = "alpha"
 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
@@ -15,58 +15,64 @@ from random import random
 from string import punctuation, whitespace
 
 
-def read_complete_works():
+def read_complete_works( folder = Path.cwd() / 'Data' ):
     """
     This function reads the file with Complete Works of William Shakespeare
     and returns a list with lines in the file and a dictionary information about 
     each of the works included.
     
     inputs:
-        None
+        folder -- pathlib Path for folder where 'Shakespeare.txt' can be found
         
     returns:
         complete_works -- list of str
-        plays -- dict with play title as key and [year, start_line, end_line] as value 
+        plays -- dict with play title as key and a dictionary with keys {year, first_line, last_line} as value 
         
     """
-    file_path = Path.cwd() / 'Data' / 'Shakespeare.txt'
+    file_path = folder / 'Shakespeare.txt'
     with open( file_path, 'r', encoding = 'UTF-8' ) as file_in:
         complete_works = file_in.readlines()
     
     elect_pattern = '<<THIS ELECTRONIC VERSION OF THE COMPLETE WORKS OF WILLIAM'
-    inside_flag = False
+    is_inside_speech = False
     found_play = False
 
     plays = {}
     for i, line in enumerate(complete_works):
-        if not inside_flag and line.strip() == elect_pattern:
-            inside_flag = True
+        if not is_inside_speech and line.strip() == elect_pattern:
+            is_inside_speech = True     # found speech of character
             continue
 
-        if inside_flag and line.strip().isnumeric():
+        if is_inside_speech and line.strip().isnumeric():
+            # Different plays have different number (2, 3, or 6) of empty lines between 
+            # year and title.
+            # Title of play is always in upper case letters.
+            #
             if ( complete_works[i+2].upper() == complete_works[i+2] or
                  complete_works[i+3].upper() == complete_works[i+3] or 
-                 complete_works[i+6].upper() == complete_works[i+6]):
+                 complete_works[i+6].upper() == complete_works[i+6] ):
                 
                 found_play = True
                 year_play = int( line.strip() )
 
+                # Get to the title and store year of release and first line of play
+                #
                 if complete_works[i+2].strip() == '':
                     if complete_works[i+3].strip() == '':
                         title_play = complete_works[i+6].strip()
-                        plays[title_play] = [year_play, i+6]
+                        plays[title_play] = {'year': year_play, 'first_line': i+6}
                     else:
                         title_play = complete_works[i+3].strip()
-                        plays[title_play] = [year_play, i+3]
+                        plays[title_play] = {'year': year_play, 'first_line': i+3}
                 else:    
                     title_play = complete_works[i+2].strip()
-                    plays[title_play] = [year_play, i+2]
+                    plays[title_play] = {'year': year_play, 'first_line': i+2}
                 continue
             
         if found_play and line.strip() == 'THE END':
-            plays[title_play].append(i)
+            plays[title_play]['last_line'] = i
             found_play = False
-            inside_flag = False
+            is_inside_speech = False
 
     return complete_works, plays
 
@@ -165,7 +171,7 @@ def get_character_lines(character, the_play):
     return character_lines
 
 
-def extract_words_from_lines(character, character_lines):
+def extract_words_from_lines(character, character_lines, punct = punctuation):
     """
     This function takes the name of a character and a list 
     with all the lines from a character in the play and returns 
@@ -174,6 +180,7 @@ def extract_words_from_lines(character, character_lines):
     inputs:
         character -- str
         character_lines -- list of str
+        punct -- str with punctuation characters to be stripped
         
     returns:
         character_words -- list of str
@@ -189,7 +196,7 @@ def extract_words_from_lines(character, character_lines):
         line_words = line.strip().split()
 
         for word in line_words:
-            character_words.append(word.rstrip(punctuation).lower())
+            character_words.append(word.rstrip(punct).lower())
 
     print(f"{character.capitalize()}'s lines comprise {len(character_words)} words.\n")
     print(f"{character.capitalize()}'s lines comprise {len(set(character_words))} unique words.\n")
