@@ -1,0 +1,11 @@
+{   "census": { "my_key": "Copy your key here" },
+    "fbi": {
+                "Account ID": "Copy your account id here ", 
+                "Email": "Copy your email here", 
+                "my_key": "Copy your FBI key here"
+            },
+    "PurpleAir": { 
+               "Read Key": "Copy your key here",
+               "Write Key": "Copy your key here"
+              }
+}
